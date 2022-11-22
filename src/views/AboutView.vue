@@ -5,13 +5,8 @@ div(class="about")
 <script lang="ts">
 import { defineComponent } from "vue";
 //import AboutView from "@/components/AboutView.vue"; // @ is an alias to /src
-import NavBar1 from "@/components/Navbarcomponent.vue"; // @ is an alias to /src
 
 export default defineComponent({
   name: "AboutView",
-  components: {
-    //    AboutView,
-    NavBar1,
-  },
 });
 </script>

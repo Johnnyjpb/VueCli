@@ -1,4 +1,5 @@
 <template lang="pug">
+router-link(to="/about") about
 ui5-shellbar(id="shellbar" primary-title="Grupo MAVI" secondary-title="Muebles America" notifications-count="99+" show-notifications	show-product-switch	show-co-pilot)
   ui5-avatar(slot="profile")
     img(src="../assets/woman_avatar_5.png" height="30" width="30")
@@ -7,9 +8,8 @@ ui5-shellbar(id="shellbar" primary-title="Grupo MAVI" secondary-title="Muebles A
   ui5-shellbar-item(id="disc" icon="disconnected" text="Disconnect")
   ui5-shellbar-item(id="call" icon="incoming-call" text="Incoming Calls" count="4")
   ui5-input(slot="searchField")
-  ui5-li(slot="menuItems") 
-    router-link(to="/") Home
-  ui5-li(slot="menuItems" onclick="toAbout") About
+  router-link(to="/" slot="menuItems" style="display: flex !important; padding: 1em !important; color: black !important; text-decoration: none !important; font-family: system-ui !important; font-weight: 400 !important;") Home
+  router-link(to="/about" slot="menuItems" style="display: flex !important; padding: 1em !important; color: black !important; text-decoration: none !important; font-family: system-ui !important; font-weight: 400 !important;") About
     
 ui5-popover(id="popover" placement-type="Bottom")
   div(class="popover-header")
@@ -27,21 +27,19 @@ ui5-popover(id="popover" placement-type="Bottom")
 <script lang="ts">
 import { defineComponent } from "vue";
 import "@ui5/webcomponents-fiori/dist/ShellBar.js";
+import "@ui5/webcomponents-fiori/dist/ShellBarItem.js";
+import "@ui5/webcomponents-icons/dist/AllIcons.js";
+import "@ui5/webcomponents/dist/List.js";
+import "@ui5/webcomponents/dist/StandardListItem.js";
+import "@ui5/webcomponents/dist/CustomListItem.js";
+import "@ui5/webcomponents/dist/GroupHeaderListItem.js";
 import { RouterLink } from "vue-router";
 import router from "@/router/index";
 
 export default defineComponent({
   name: "NavBar1",
-  props: {
-    msg: String,
-  },
   components: {
     RouterLink,
-  },
-  methods: {
-    toAbout: function () {
-      router.push("/about");
-    },
   },
 });
 </script>

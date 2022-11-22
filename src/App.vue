@@ -2,6 +2,7 @@
 NavBar1
 router-view
 </template>
+
 <script lang="ts">
 import NavBar1 from "@/components/Navbarcomponent.vue"; // @ is an alias to /src
 import { defineComponent } from "vue";
