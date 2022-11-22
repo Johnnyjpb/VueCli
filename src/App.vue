@@ -1,11 +1,18 @@
-<template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+<template lang="pug">
+NavBar1
+router-view
 </template>
+<script lang="ts">
+import NavBar1 from "@/components/Navbarcomponent.vue"; // @ is an alias to /src
+import { defineComponent } from "vue";
 
+export default defineComponent({
+  name: "NatBar1",
+  components: {
+    NavBar1,
+  },
+});
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
