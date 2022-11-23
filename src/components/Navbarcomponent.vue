@@ -1,6 +1,5 @@
 <template lang="pug">
-router-link(to="/about") about
-ui5-shellbar(id="shellbar" primary-title="Grupo MAVI" secondary-title="Muebles America" notifications-count="99+" show-notifications	show-product-switch	show-co-pilot)
+ui5-shellbar#shellbar(primary-title="Grupo MAVI" secondary-title="Muebles America" notifications-count="99+" show-notifications	show-product-switch	show-co-pilot)
   ui5-avatar(slot="profile")
     img(src="../assets/woman_avatar_5.png" height="30" width="30")
   img(slot="logo" height="40" width="60" src="../assets/images/sap-logo-svg.png")
@@ -8,10 +7,10 @@ ui5-shellbar(id="shellbar" primary-title="Grupo MAVI" secondary-title="Muebles A
   ui5-shellbar-item(id="disc" icon="disconnected" text="Disconnect")
   ui5-shellbar-item(id="call" icon="incoming-call" text="Incoming Calls" count="4")
   ui5-input(slot="searchField")
-  router-link(to="/" slot="menuItems" style="display: flex !important; padding: 1em !important; color: black !important; text-decoration: none !important; font-family: system-ui !important; font-weight: 400 !important;") Home
-  router-link(to="/about" slot="menuItems" style="display: flex !important; padding: 1em !important; color: black !important; text-decoration: none !important; font-family: system-ui !important; font-weight: 400 !important;") About
+  ui5-li#Home(slot="menuItems") Home
+  ui5-li#About(slot="menuItems") About
     
-ui5-popover(id="popover" placement-type="Bottom")
+ui5-popover#popover( placement-type="Bottom")
   div(class="popover-header")
     ui5-title(style="padding: 0.25rem 1rem 0rem 1rem") An Kimura
   div(class="popover-content")
@@ -33,13 +32,29 @@ import "@ui5/webcomponents/dist/List.js";
 import "@ui5/webcomponents/dist/StandardListItem.js";
 import "@ui5/webcomponents/dist/CustomListItem.js";
 import "@ui5/webcomponents/dist/GroupHeaderListItem.js";
-import { RouterLink } from "vue-router";
 import router from "@/router/index";
 
 export default defineComponent({
   name: "NavBar1",
-  components: {
-    RouterLink,
+  mounted: function () {
+    const shellbar = document.getElementById("shellbar");
+    const popover = document.getElementById("popover");
+
+    shellbar?.addEventListener("profile-click", function (event) {
+      // @ts-expect-error @typescript-eslint/ban-ts-comment - It exists but the compiler doesn't recognize it
+      popover?.showAt(event.detail.targetRef);
+    });
+    shellbar?.addEventListener("menu-item-click", function (event) {
+      // @ts-expect-error @typescript-eslint/ban-ts-comment - It exists but the compiler doesn't recognize it
+      switch (event.detail.item.id) {
+        case "Home":
+          router.push("/");
+          break;
+        case "About":
+          router.push("/about");
+          break;
+      }
+    });
   },
 });
 </script>
